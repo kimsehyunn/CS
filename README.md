@@ -59,6 +59,26 @@ Exception Filter
 Middleware
 요청 전 처리 로직 (로그, 인증 등)
 Express 스타일 req, res, next 사용 
+운영 체제와 응용 프로그램, 혹은 클라이언트와 서버 사이에서 서로 다른 시스템 및 애플리케이션을 연결하여 데이터를 교환하고 중개하는 역할을 하는 소프트웨어
+
+https://dev.to/hasanelsherbiny/what-is-middleware-26mk
+
+Why Do we need to use Middleware ?
+Request Processing
+Response Processing
+Cross-Cutting Concerns
+Flexibility and Extensibility
+Separation of Concerns
+
+
+Most Common Uses of Middleware
+Authentication and Authorization
+Error Handling
+Logging and Monitoring
+Request Parsing and Validation
+Compression and Caching
+Routing and URL Rewriting
+
 
 
 3. 인덱스를 최적화 
