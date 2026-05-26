@@ -82,12 +82,15 @@ Routing and URL Rewriting
 웹소켓 grpc trpc rpc web protocol ecs lambda 
 3. 인덱스를 최적화 
 
-4. 동시성 문제란? 동시성 문제 해결 방법 
+4. 동시성 문제란? 동시성 문제 해결 방법
 
-5. AWS
+5. 본인인증 통합 -> 하나는 jwt 기반, 하나는 
+그럼 jwt가 무엇인가?
+
+6. AWS
    Iam MSK Cloudfare Cloudwatch
 
-6. AI harness engineerign
+7. AI harness engineerign
 
-7. kafka
+8. kafka
    https://aws.amazon.com/ko/what-is/apache-kafka/
