@@ -192,9 +192,41 @@ JWT는 보통 요청마다 헤더에 실리기 때문에 크기가 커질수록 
 미들웨어는 양 쪽을 연결하여 데이터를 주고 받을 수 있도록 중간에서 매개 역할을 하는 소프트웨어, 네트워크를 통해서 연결된 여러 개의 컴퓨터에 있는 많은 프로세스들에게 어떤 서비스를 사용할 수 있도록 연결해 주는 소프트웨어를 말한다. 3계층 클라이언트/서버 구조에서 미들웨어가 존재한다. 웹 브라우저에서 데이터베이스로부터 데이터를 저장하거나 읽어올 수 있게 중간에 미들웨어가 존재하게 된다.
 
 
-# 10.some Terminology
+## 10. Some Terminologies
 - MSA : Microservice Architecture 하나의 큰 서비스를 여러 개의 독립적인 작은 서비스로 분리해 개발·배포·운영하는 아키텍처 스타일
 - MSK : Managed Streaming for Apache Kafka AWS에서 제공하는 Apache Kafka 관리형 서비스. Kafka 클러스터 구축/운영을 AWS가 대신 관리해줌.
 - CCB : Change Control Board (변경 심의 위원회)
 - SCM : Source Code Management Git 같은 형상관리/소스코드 관리 시스템 의미.
+
+## 11. RPC (Remote Procedure Call) : “다른 서버의 함수를 마치 내 함수처럼 호출하는 방식”
+로컬 함수 호출처럼 보이지만, 실제로는 네트워크 요청
+
+| REST     | RPC         |
+| -------- | ----------- |
+| 리소스 중심   | 함수 중심       |
+| JSON 많음  | protobuf 많음 |
+| 사람 읽기 쉬움 | 성능 좋음       |
+| 브라우저 친화적 | 서버간 통신 최적   |
+| 범용 API   | 내부 시스템      |
+
+protobuf : 구글이 만든 데이터 직렬화 포멧 -> 객체 데이터를 매우 작고 빠른 binary 형태로 변환하는 기술
+json은 문자열 파싱 필요하지만, protobuf는 binary로 보내기 때문에 매우 빠름 
+Rest + JSON은 사람 친화적이고 protobuf는 컴퓨터 친화적 
+MSA + AI + 실시간 시스템 때문에 네트워크 비용, latency(요청 보내고 응답 받을 때까지 걸리는 시간), serialization cost(객체를 네트워크로 보낼 수 있는 형태로 변환하는 비용)가 중요해져서 protobuf + gRPC 조합이 많이 쓰인다. 
+
+아 직렬화가 serialization 역직렬화는 deserialization
+대규모 시스템 최적화는 결국 얼마나 빨리/작게/적은 cpu로 데이터를 주고받느냐 싸움~!! 
+
+
+
+|       | gRPC              | tRPC             |
+| ----- | ----------------- | ---------------- |
+| 목적    | 고성능 서버 통신         | TS 풀스택 개발        |
+| 타입 정의 | protobuf          | TypeScript 타입 추론 |
+| 언어    | 다국어               | TypeScript only  |
+| 전송    | HTTP/2 + protobuf | HTTP + JSON      |
+| 성능    | 매우 빠름             | 일반 HTTP 수준       |
+| 브라우저  | 불편                | 매우 편함            |
+| 사용처   | MSA 내부            | Next.js/BFF      |
+| 특징    | infra-oriented    | DX-oriented      |
 
