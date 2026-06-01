@@ -122,6 +122,188 @@ React 공식문서에서 클래스형 컴포넌트로 선언하는 방법을 아
 
 
 ## 9. CSR vs SSR 
+ 
+## CSR (Client Side Rendering)
+
+브라우저(Client)가 JavaScript를 실행하여 화면을 렌더링하는 방식이다.
+
+### 동작 과정
+
+```text
+브라우저 요청
+      ↓
+빈 HTML 반환
+      ↓
+JS Bundle 다운로드
+      ↓
+React 실행
+      ↓
+API 요청
+      ↓
+화면 렌더링
+```
+
+### 장점
+
+- 서버 부하 감소
+- CDN 캐싱 용이
+- React SPA 구조와 잘 맞음
+- 사용자 인터랙션이 많은 서비스에 적합
+
+### 단점
+
+- 초기 로딩 속도가 느림
+- JS 다운로드 완료 전 화면 표시 불가
+- SEO에 불리
+
+### 대표 사례
+
+- 관리자 페이지(Admin)
+- 대시보드
+- WebView 서비스
+- SPA 애플리케이션
+
+---
+
+## SSR (Server Side Rendering)
+
+서버가 HTML을 미리 생성하여 브라우저에 전달하는 방식이다.
+
+### 동작 과정
+
+```text
+브라우저 요청
+      ↓
+서버 렌더링
+      ↓
+완성된 HTML 반환
+      ↓
+브라우저 표시
+      ↓
+Hydration
+      ↓
+React 활성화
+```
+
+### 장점
+
+- 초기 화면 표시 속도 향상
+- SEO에 유리
+- 검색 엔진 크롤링 가능
+- SNS 공유 메타데이터 제공 가능
+
+### 단점
+
+- 서버 부하 증가
+- Hydration 비용 발생
+- 구현 복잡도 증가
+
+### 대표 사례
+
+- 쇼핑몰
+- 블로그
+- 뉴스 사이트
+- 검색 서비스
+
+---
+
+## Hydration
+
+SSR로 생성된 HTML에 React 이벤트와 상태를 연결하는 과정이다.
+
+```text
+Server
+  ↓
+HTML 생성
+  ↓
+Client
+  ↓
+HTML 표시
+  ↓
+Hydration
+  ↓
+React 활성화
+```
+
+예를 들어 SSR이 아래 HTML을 생성한다.
+
+```html
+<button>구매하기</button>
+```
+
+Hydration 이후 React가 이벤트를 연결한다.
+
+```jsx
+<button onClick={buy}>
+  구매하기
+</button>
+```
+
+---
+
+## CSR vs SSR 비교
+
+| 항목 | CSR | SSR |
+|--------|--------|--------|
+| 렌더링 위치 | Browser | Server |
+| 초기 로딩 | 느림 | 빠름 |
+| SEO | 불리 | 유리 |
+| 서버 부하 | 낮음 | 높음 |
+| 구현 난이도 | 낮음 | 높음 |
+| 대표 환경 | SPA, WebView | 쇼핑몰, 블로그 |
+
+---
+
+## WebView에서 CSR을 선택한 이유
+
+WebView 환경에서는 SEO가 필요하지 않다.
+
+SSR은 서버 렌더링과 Hydration 비용이 추가된다.
+
+```text
+SSR
+서버 렌더링
+      ↓
+HTML 생성
+      ↓
+전송
+      ↓
+Hydration
+```
+
+반면 CSR은 브라우저에서 직접 렌더링한다.
+
+```text
+CSR
+JS 다운로드
+      ↓
+React 렌더링
+```
+
+따라서 WebView 환경에서는 SSR의 장점을 거의 활용하지 못하므로 CSR을 사용하는 경우가 많다.
+
+---
+
+## 핵심 정리
+
+- CSR은 브라우저가 JavaScript를 실행하여 화면을 렌더링하는 방식이다.
+- SSR은 서버가 HTML을 미리 생성하여 전달하는 방식이다.
+- SSR은 SEO와 초기 렌더링에 유리하다.
+- CSR은 서버 부하가 적고 구조가 단순하다.
+- Hydration은 SSR HTML에 React 이벤트를 연결하는 과정이다.
+- WebView 환경에서는 SEO가 불필요하므로 CSR을 선택하는 경우가 많다.
+
+---
+
+## 면접 답변 예시
+
+> CSR은 브라우저에서 JavaScript를 실행하여 화면을 렌더링하는 방식이고, SSR은 서버가 HTML을 미리 생성하여 전달하는 방식입니다. SSR은 SEO와 초기 로딩 속도에 유리하지만 서버 렌더링과 Hydration 비용이 발생합니다. 반면 CSR은 서버 부담이 적고 구조가 단순합니다. 제가 사용했던 WebView 환경에서는 SEO가 필요하지 않아 SSR 대신 CSR을 사용하여 서버 렌더링 비용을 줄였습니다.
+
+
+
+
+
+
 
 
 ## 10. MVVM 구조 
