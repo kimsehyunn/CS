@@ -320,12 +320,14 @@ string, list, hash, set, sorted set(실시간 랭킹 시스템)
 - Cache Penetration : 존재하지 않는 데이터에 대한 요청이 반복되어 매번 DB 조회가 발생하는 현상 : null 캐시, 블룸 필터로 해결
 - Cache Avalanche : 대량의 캐시가 동시에 만료되는 현상 TTL 랜덤화, 다중 캐시로 해결
 - Redis Persistence : 메모리에 저장된 데이터를 디스크에 백업하는 기능 -> RDB, AOF 방식이 있다.
+  
 | RDB      | AOF       |
 | -------- | --------- |
 | Snapshot | 명령어 로그    |
 | 복구 빠름    | 데이터 유실 적음 |
 | 파일 작음    | 파일 큼      |
 | 성능 좋음    | 성능 낮음     |
+
 - Redis Pub/Sub : Publisher가 메시지를 발행하면 Subscriber가 실시간으로 수신하는 구조
   publisher -> redis -> subscriber 구조로 채팅, 알림에 활용됨. but 메시지 영속성이 없어서 subscriber 연결이 끊겨 있으면 메시지 수신 불가
 - Redis 분산 락 : 멀티 서버 환경에서 동시성 문제 해결하기 위해 사용 SETNX 명령어 활용하여 여러 서버가 동시에 같은 자원을 수정하지 못하게.
