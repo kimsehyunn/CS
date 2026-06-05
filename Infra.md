@@ -294,4 +294,4 @@ Request 3 → 독립 처리
 - 비동기 작업 처리 
 
 
-
+## Serverless vs Provisioned 
