@@ -342,10 +342,44 @@ string, list, hash, set, sorted set(실시간 랭킹 시스템)
 - 메시지 브로커
 
 ## 13. PostgreSQL
+오픈소스 관계형 데이터베이스(RDBMS)로, SQL 표준을 잘 준수하며 안정성과 확장성이 뛰어난 데이터베이스
+MVCC : Multi Version Concurrency Control -> 락을 최소화하면서 동시성 처리 가능
+트랜잭션 강하고 데이터 무결성 좋고 확장성 높고 복잡한 쿼리 강함
+
 
 ## 14. MongoDB
+문서(Document) 기반 NoSQL 데이터베이스
+BSON 문서로 데이터를 저장함
+복잡한 join 어렵고 정합성 관리 어려움. 스키마는 유연
 
 
-## REST API 멱등성
+## REST API 멱등성 (Idempotency)
+같은 요청을 여러 번 보내도 결과가 한 번 보낸 것과 동일한 성질
+An operation is idempotent if making the same request multiple times produces the same result as making it once.
+| Method | 멱등성       |
+| ------ | --------- |
+| GET    | O         |
+| PUT    | O         |
+| DELETE | O         |
+| POST   | X         |
+| PATCH  | 상황에 따라 다름 |
 
 
+
+## Threading 
+프로세스 내부에서 실제 작업을 수행하는 실행 단위 
+* Process vs Thread
+Process : 운영체제가 실행 중인 프로그램, 각 프로세스는 독립적인 메모리 공간을 가짐
+Thread : 프로세스 안에서 일하는 작업자, 스레드끼리는 메모리 공유
+멀티 스레드/싱글 스레드
+결국 메모리 공유로 인한 race condition(동시에 가은 자원에 접근해서 예상치 못한 결과 발생)하는게 문제점
+해결은 mutex/lock/deadlock...인데 동시성 해결 방법 블로그에 써놨으니 까먹지 않게 항상공부
+
+- Thread
+A thread is the smallest unit of execution within a process.
+
+- Race Condition
+A race condition occurs when multiple threads access and modify shared data concurrently, leading to unpredictable results.
+
+- Deadlock
+A deadlock occurs when two or more threads wait indefinitely for resources held by each other.
