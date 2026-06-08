@@ -383,3 +383,23 @@ A race condition occurs when multiple threads access and modify shared data conc
 
 - Deadlock
 A deadlock occurs when two or more threads wait indefinitely for resources held by each other.
+
+
+## 캐싱
+자주 사용하는 데이터를 미리 저장해두고, 다음 요청 떄 DB 대신 빠르게 꺼내 쓰는 기술
+캐시에 있으면 Cache Hit, 캐시에 없으면 Cache Miss 
+실무에서 캐싱은 거의 Redis
+특징으로는 메모리에 저장, 엄청 빠름, Key-Value 구조 
+
+
+## 객체지향
+객체 간 상호작용으로 문제를 해결하는 패러다임
+1. 캡슐화 Encapsulation : 외부에서 수정하지 못하도록 데이터를 보호 
+2. 상속 Inheritance : 기존 클래스 기능을 재사용
+3. 다형성 Polymorphism : 같은 인터페이스로 다른 동작을 하도록
+4. 추상화 Abstraction : 복잡한 구현 숨기기
+
+장점: 재사용성 확장성 유지보수성 캡슐화 
+단점 : 설계 복잡, 과도한 추상화
+
+상속보다 조합을 선호하는 이유 : 상속은 클래스 간 결합도를 높이고, 변경에 취약하기 때문에, 더 유연하고 확장성이 좋은 조합을 선호 
