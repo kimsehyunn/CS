@@ -56,17 +56,51 @@ singleton 관리
  
 
 ## 4. RESTFUL API란?
-웹에서 자원을(Resource) HTTP 방식으로 다루도록 설계한 API 스타일
-| Method | 의미    |
-| ------ | ----- |
-| GET    | 조회    |
-| POST   | 생성    |
-| PUT    | 전체 수정 |
-| PATCH  | 부분 수정 |
-| DELETE | 삭제    |
+- 웹의 설계 원칙인 REST를 따르는 API 설계 방식. 
+- 서버에 있는 데이터를 자원으로 보고, HTTP가 가지고 있는 기능(GET, POST..)을 그대로 활용해서 일관성 있게 데이터를 주고받자는 철학  
+- Representational State Transfer
+REST is an architectural style for designing web APIs.
+URL represents a Resource, while HTTP Methods represent Actions.
 
-철학 : Resource-Oriented/Stateless   
-행동 중심이 아니라 데이터 중심.
+Resource -> HTTP Method -> Representation 
+Because a URL represents a resource, it should generally be a noun, not a verb.
+Actions should be expressed through HTTP methods rather than the URL itself.
+
+An operation is idempotent if making the same request multiple times produces the same final state on the server.
+| Method | Meaning                     | Idempotent |
+| ------ | --------------------------- | ---------- |
+| GET    | Retrieve                    | O          |
+| POST   | Create                      | X          |
+| PUT    | Replace an entire resource  | O          |
+| PATCH  | Partially update a resource | Usually O  |
+| DELETE | Remove a resource           | O          |
+
+### GET : Retrieve a resource.
+- Does not modify server data.
+- Produces the same result even when called multiple times.
+- Can be cached.
+- Is idempotent. : returns the same resource without changing the server state.
+
+
+### Post : Create a new resource.
+- Creates a new resource.
+- May produce a different result with each request.
+- Is not idempotent.
+
+
+### PUT : Replace an entire resource.
+- Updates the entire resource.
+- Repeating the same request produces the same final state.
+- Is idempotent.
+
+### PATCH : Partially update a resource. 
+- Updates only specified fields. 
+- Usually considered idempotent, depending on implementation
+
+### DELETE : Remove a resource. 
+- Deletes the specified resource.
+- Repeating the same request results in the same final state.
+- Is idempotent. 
 
 ## 5. POST와 GET의 차이 
 GET
